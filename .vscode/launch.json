@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Makan Mana",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "run.py",
+      "console": "integratedTerminal",
+      "jinja": true
+    }
+  ]
+}
