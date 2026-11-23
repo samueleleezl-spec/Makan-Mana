@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Makan Mana</h1>
+  <p class="sub">the real landing page is still the static index.html, not plugged in yet</p>
+  {% if g.user %}
+    <p class="sub">logged in as {{ g.user['email'] }}</p>
+  {% else %}
+    <a class="btn btn-solid full" href="{{ url_for('auth.register') }}">Make an account</a>
+  {% endif %}
+</div>
+{% endblock %}
