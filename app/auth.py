@@ -108,3 +108,40 @@ def login_required(view):
 @login_required
 def me():
     return render_template("auth/me.html")
+
+
+# ---------------------------------------------------------------------------
+# TODO: email verify + password reset. not done yet.
+#
+# the tutorial i followed stops at login/logout so im on my own for this bit.
+# what i worked out so far:
+#
+#   - user table already has is_verified, defaults to 0, so the column is there
+#   - need a token in the link, cant just do /verify/5 bc then anyone can type
+#     /verify/1 and verify someone elses account
+#   - looked it up, itsdangerous can sign the email with the secret key and
+#     stick an expiry on it, and it ships with flask already. looks like:
+#         s = URLSafeTimedSerializer(app.secret_key)
+#         token = s.dumps(email, salt="verify")
+#         s.loads(token, salt="verify", max_age=86400)
+#     still need to figure out how to catch it when the token is expired vs
+#     just wrong, think its 2 different exceptions
+#   - for reset, how do i stop the same link being used twice?? if its just
+#     signed it works forever until it expires. ask in the gc
+#   - and no actual email sending yet, gmail smtp needs an app password.
+#     plan was to dump the email into a txt file for now and copy the link
+# ---------------------------------------------------------------------------
+
+
+@bp.route("/verify/<token>")
+def verify(token):
+    flash("email verify isnt built yet")
+    return redirect(url_for("auth.login"))
+
+
+@bp.route("/forgot", methods=("GET", "POST"))
+def forgot():
+    if request.method == "POST":
+        flash("password reset isnt built yet sorry")
+        return redirect(url_for("auth.login"))
+    return render_template("auth/forgot.html")
