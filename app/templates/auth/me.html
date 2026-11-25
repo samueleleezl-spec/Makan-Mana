@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}You &middot; Makan Mana{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Logged in</h1>
+  <p class="sub">test page so i know the session actually worked</p>
+  <ul class="facts">
+    <li><span>name</span>{{ g.user['display_name'] }}</li>
+    <li><span>email</span>{{ g.user['email'] }}</li>
+    <li><span>verified</span>{{ "yes" if g.user['is_verified'] else "no (not built yet)" }}</li>
+  </ul>
+  <a class="btn btn-ghost full" href="{{ url_for('auth.logout') }}">Log out</a>
+</div>
+{% endblock %}

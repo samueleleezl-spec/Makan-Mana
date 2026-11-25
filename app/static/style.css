@@ -1,0 +1,44 @@
+/* same tokens as Soon's style.css on main so this doesnt look like a different
+   website. when we merge, delete this top block and just import his file */
+:root{
+  --red:#E5382B; --red-dark:#B72418;
+  --yellow:#FFC93C; --green:#17835A;
+  --paper:#FFFDF7; --sand:#F6EFE0; --ink:#1D1B20; --muted:#6B6670;
+  --line:#EFE8D8;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);color:var(--ink);background:var(--sand);line-height:1.6}
+a{color:var(--red)}
+ul{list-style:none}
+h1{font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1.1;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 32px;background:var(--paper);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.35rem var(--display);color:var(--ink);text-decoration:none}
+.logo-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--red);font-size:1.2rem}
+.auth{display:flex;gap:10px}
+
+.btn{display:inline-block;font:700 1rem/1 var(--body);padding:15px 26px;border-radius:999px;border:2px solid transparent;cursor:pointer;text-decoration:none;text-align:center}
+.btn-sm{padding:11px 18px;font-size:.9rem}
+.btn-solid{background:var(--red);color:#fff;box-shadow:0 4px 0 var(--red-dark)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.full{display:block;width:100%;margin-top:22px}
+
+/* the card. basically every signup page ive looked at is one centered box */
+main{display:grid;place-items:start center;padding:48px 16px}
+.card{width:100%;max-width:420px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:34px 30px}
+.sub{color:var(--muted);font-size:.95rem;margin-top:6px}
+.center{text-align:center}
+
+label{display:block;margin-top:20px;margin-bottom:6px;font-weight:700;font-size:.9rem}
+input{width:100%;padding:13px 14px;font:400 1rem var(--body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px}
+input:focus{border-color:var(--ink)}
+.hint{margin-top:6px;font-size:.8rem;color:var(--muted)}
+
+.flash{max-width:420px;margin:0 auto 16px;padding:12px 16px;background:var(--yellow);border-radius:12px;font-weight:700;font-size:.92rem}
+
+.facts{margin-top:18px;border-top:1px solid var(--line)}
+.facts li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.facts span{color:var(--muted)}

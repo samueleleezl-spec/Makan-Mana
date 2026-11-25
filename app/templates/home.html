@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Makan Mana – Decide where to eat at MMU Cyberjaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+</head>
+<body id="top">
+
+<!-- NAV -->
+<header class="nav">
+  <a class="logo" href="#top"><span class="logo-mark">🍜</span>Makan Mana</a>
+  <nav class="links" aria-label="Main">
+    <a href="#how">How it works</a>
+    <a href="#explore">Food spots</a>
+    <a href="#rankings">Rankings</a>
+    <a href="#group">Group room</a>
+  </nav>
+  <div class="auth">
+    {% if g.user %}
+      <a class="btn btn-ghost" href="{{ url_for('auth.me') }}">{{ g.user['display_name'] }}</a>
+      <a class="btn btn-solid" href="{{ url_for('auth.logout') }}">Log out</a>
+    {% else %}
+      <a class="btn btn-ghost" href="{{ url_for('auth.login') }}">Log in</a>
+      <a class="btn btn-solid" href="{{ url_for('auth.register') }}">Sign up</a>
+    {% endif %}
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Where are we eating?</h1>
+      <p class="lead">Pick, vote and decide where to eat around MMU Cyberjaya in under a minute. No more 30-minute debates. No more Haji Tapah every single day.</p>
+      <div class="cta-row">
+        <a class="btn btn-yellow" href="#group">Start a group room</a>
+        <a class="btn btn-outline" href="#how">Decide for me</a>
+      </div>
+    </div>
+
+    <div class="duel" id="vote">
+      <p class="duel-title">Quick duel: which one tonight?</p>
+      <div class="duel-opts">
+        <label class="duel-opt">
+          <input type="radio" name="duel" checked>
+          <span class="duel-emoji">🍛</span>
+          <strong>Haji Tapah</strong>
+          <small>Malaysian · RM 6–10 · 1 min walk</small>
+          <span class="picked">Your pick</span>
+        </label>
+        <span class="vs">VS</span>
+        <label class="duel-opt">
+          <input type="radio" name="duel">
+          <span class="duel-emoji">🍲</span>
+          <strong>Starbees</strong>
+          <small>Malaysian · RM 5–18 · 5 min walk</small>
+          <span class="picked">Your pick</span>
+        </label>
+      </div>
+      <p class="duel-note">Every vote updates the campus ranking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THREE WAYS -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <h2>Pick the way that fits your mood</h2>
+    <p class="sub">Not sure where to start? Choose what describes you right now.</p>
+    <div class="modes">
+      <article class="mode m-yellow">
+        <span class="mode-icon">🎲</span>
+        <h3>Eating alone?</h3>
+        <p>Hit one button and we choose for you. Filters like halal and budget still apply.</p>
+        <button class="btn btn-dark" type="button">Decide for me</button>
+      </article>
+      <article class="mode m-green">
+        <span class="mode-icon">⚔️</span>
+        <h3>Can’t choose?</h3>
+        <p>We show you two spots. You pick one. Do it a few times and your favourites rise to the top.</p>
+        <a class="btn btn-yellow" href="#vote">Start voting</a>
+      </article>
+      <article class="mode m-navy">
+        <span class="mode-icon">👯</span>
+        <h3>Eating with friends?</h3>
+        <p>Create a room, send the link to your group chat, and let everyone vote together.</p>
+        <a class="btn btn-yellow" href="#group">Create a room</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD SPOTS -->
+<section class="sec sec-sand" id="explore">
+  <div class="wrap">
+    <h2>Browse food spots around campus</h2>
+    <p class="sub">Search, filter and find something that fits your budget and your diet.</p>
+
+    <div class="filters">
+      <input class="search" type="search" placeholder="Search by name or cuisine" aria-label="Search food spots">
+      <div class="chips">
+        <label class="chip"><input type="checkbox" checked>Halal</label>
+        <label class="chip"><input type="checkbox">Vegetarian-friendly</label>
+        <label class="chip"><input type="checkbox">Under RM10</label>
+        <label class="chip"><input type="checkbox">Open now</label>
+        <label class="chip"><input type="checkbox">Malaysian</label>
+        <label class="chip"><input type="checkbox">Korean</label>
+        <label class="chip"><input type="checkbox">Japanese</label>
+        <label class="chip"><input type="checkbox">Western</label>
+      </div>
+    </div>
+
+    <div class="cards" id="spot-list">
+      <article class="spot">
+        <div class="photo"></div>
+        <div class="spot-body">
+          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
+          <h3></h3>
+          <ul class="facts">
+            <li>💰 </li>
+            <li>🕗 </li>
+            <li>🚶 </li>
+          </ul>
+          <button class="btn btn-line" type="button">View details</button>
+        </div>
+      </article>
+      <article class="spot">
+        <div class="photo"></div>
+        <div class="spot-body">
+          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
+          <h3></h3>
+          <ul class="facts">
+            <li>💰 </li>
+            <li>🕗 </li>
+            <li>🚶 </li>
+          </ul>
+          <button class="btn btn-line" type="button">View details</button>
+        </div>
+      </article>
+      <article class="spot">
+        <div class="photo"></div>
+        <div class="spot-body">
+          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
+          <h3></h3>
+          <ul class="facts">
+            <li>💰 </li>
+            <li>🕗 </li>
+            <li>🚶 </li>
+          </ul>
+          <button class="btn btn-line" type="button">View details</button>
+        </div>
+      </article>
+      <article class="spot">
+        <div class="photo"></div>
+        <div class="spot-body">
+          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
+          <h3></h3>
+          <ul class="facts">
+            <li>💰 </li>
+            <li>🕗 </li>
+            <li>🚶 </li>
+          </ul>
+          <button class="btn btn-line" type="button">View details</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="center"><button class="btn btn-dark" type="button">Suggest a new spot</button></div>
+  </div>
+</section>
+
+<!-- RANKINGS -->
+<section class="sec" id="rankings">
+  <div class="wrap">
+    <h2>See what MMU is really eating</h2>
+    <p class="sub">Rankings come from head-to-head votes. The more people vote, the more accurate they get.</p>
+
+    <div class="tabs">
+      <input type="radio" name="rank" id="t1" checked>
+      <input type="radio" name="rank" id="t2">
+      <input type="radio" name="rank" id="t3">
+
+      <div class="tabbar">
+        <label for="t1">Campus leaderboard</label>
+        <label for="t2">My ranking</label>
+        <label for="t3">By cuisine</label>
+      </div>
+
+      <div class="panels">
+        <div class="panel" id="p1">
+          <ol class="board">
+            <!-- Food name goes in each empty <span class="nm"></span>. -->
+            <li><span class="pos">1</span><span class="nm">Starbees</span><span class="bar"><i style="width:94%"></i></span><span class="elo">777</span></li>
+            <li><span class="pos">2</span><span class="nm">Haji Tapah</span><span class="bar"><i style="width:86%"></i></span><span class="elo">677</span></li>
+            <li><span class="pos">3</span><span class="nm">Mcdonalds</span><span class="bar"><i style="width:78%"></i></span><span class="elo">667</span></li>
+            <li><span class="pos">4</span><span class="nm">Mixue</span><span class="bar"><i style="width:66%"></i></span><span class="elo">67</span></li>
+            <li><span class="pos">5</span><span class="nm">Ayam Gepuk</span><span class="bar"><i style="width:58%"></i></span><span class="elo">6 </span></li>
+          </ol>
+          <p class="foot-note">Score = ELO rating from all student votes.</p>
+        </div>
+
+        <div class="panel" id="p2">
+          <ol class="board">
+            <!-- Food name goes in each empty <span class="nm"></span>. -->
+            <li><span class="pos">1</span><span class="nm"></span><span class="bar"><i style="width:92%"></i></span><span class="elo">8 visits</span></li>
+            <li><span class="pos">2</span><span class="nm"></span><span class="bar"><i style="width:70%"></i></span><span class="elo">6 visits</span></li>
+            <li><span class="pos">3</span><span class="nm"></span><span class="bar"><i style="width:40%"></i></span><span class="elo">3 visits</span></li>
+          </ol>
+          <p class="foot-note">Built from your votes and visits. <button class="link-btn" type="button">Edit my list</button></p>
+        </div>
+
+        <div class="panel" id="p3">
+          <div class="cuisines">
+            <div class="cz"><span>🍛</span><h4>Malaysian</h4><p></p></div>
+            <div class="cz"><span>🍲</span><h4>Korean</h4><p></p></div>
+            <div class="cz"><span>🍜</span><h4>Japanese</h4><p></p></div>
+            <div class="cz"><span>🍔</span><h4>Western</h4><p></p></div>
+          </div>
+          <p class="foot-note">The #1 spot in each cuisine right now.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<! Group ROOM !>
+<section class="sec sec-navy" id="group">
+  <div class="wrap group-grid">
+    <div class="group-copy">
+      <h2>Eat together, argue less</h2>
+      <p class="sub">Your group chat gets a decision in minutes, not half an hour.</p>
+      <ol class="steps">
+        <li><strong>Create a room.</strong> You become the group leader.</li>
+        <li><strong>Share the link</strong> in your group chat.</li>
+        <li><strong>Add requirements</strong> like halal or vegetarian-friendly. Spots that don’t fit are hidden automatically.</li>
+        <li><strong>Everyone votes</strong> on what’s left.</li>
+        <li><strong>See the winner</strong> and go eat.</li>
+      </ol>
+      <button class="btn btn-yellow" type="button">Create a room</button>
+    </div>
+
+    <div class="room" aria-label="Example group room">
+      <div class="room-head">
+        <strong>Friday Lunch Squad</strong>
+        <span class="live">Voting open</span>
+      </div>
+      <div class="share">
+        <input type="text" value="makanmana.my/room/x7k2" readonly aria-label="Room link">
+        <button class="btn btn-yellow btn-sm" type="button">Copy link</button>
+      </div>
+      <div class="people">
+        <span class="av a1">A</span><span class="av a2">J</span><span class="av a3">S</span><span class="av a4">+2</span>
+        <small>5 friends joined</small>
+      </div>
+      <div class="reqs">
+        <small>Requirements for this room</small>
+        <span class="tag tag-halal">Halal</span><span class="tag tag-veg">Vegetarian-friendly</span>
+      </div>
+      <ul class="votes">
+        <li><span>🍛 Haji Tapah</span><span class="vbar"><i style="width:80%"></i></span><b>4</b></li>
+        <li><span>🍲 Starbees</span><span class="vbar"><i style="width:40%"></i></span><b>2</b></li>
+        <li><span>🍔 Deen Cafe</span><span class="vbar"><i style="width:20%"></i></span><b>1</b></li>
+      </ul>
+      <p class="hidden-note">2 spots hidden because they don’t match everyone’s needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to stop arguing about lunch?</h2>
+    <div class="cta-row center-row">
+      {% if g.user %}
+        <a class="btn btn-dark" href="{{ url_for('auth.me') }}">My account</a>
+      {% else %}
+        <a class="btn btn-dark" href="{{ url_for('auth.register') }}">Sign up</a>
+        <a class="btn btn-outline-dark" href="{{ url_for('auth.login') }}">Sign in</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-row">
+    <a class="logo" href="#top"><span class="logo-mark">🍜</span>Makan Mana</a>
+    <p>Made by MMU students, made for MMU students.</p>
+  </div>
+</footer>
+
+</body>
+</html>
