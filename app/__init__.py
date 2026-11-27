@@ -22,6 +22,9 @@ def create_app():
 
     @app.route("/")
     def home():
-        return render_template("home.html")
+        restaurants = db.get_db().execute(
+            "SELECT * FROM restaurant ORDER BY id"
+        ).fetchall()
+        return render_template("home.html", restaurants=restaurants)
 
     return app

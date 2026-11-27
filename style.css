@@ -78,10 +78,6 @@ h4 {
     transition: transform .15s,box-shadow .15s,background .15s;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-}
-
 .btn-sm {
     padding: 11px 18px;
     font-size: .9rem;
