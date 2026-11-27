@@ -118,61 +118,51 @@
     </div>
 
     <div class="cards" id="spot-list">
-      <article class="spot">
+      {% for r in restaurants %}
+      <article class="spot" {% if loop.index > 4 %}hidden{% endif %}>
         <div class="photo"></div>
         <div class="spot-body">
-          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
-          <h3></h3>
+          <div class="tags">
+            <span class="tag">{{ r['cuisine'] }}</span>
+            {% if r['halal_status'] in ['Not confirmed', 'Non-halal'] %}
+              <span class="tag">{{ r['halal_status'] }}</span>
+            {% else %}
+              <span class="tag tag-halal">{{ r['halal_status'] }}</span>
+            {% endif %}
+          </div>
+          <h3>{{ r['name'] }}</h3>
           <ul class="facts">
-            <li>💰 </li>
-            <li>🕗 </li>
-            <li>🚶 </li>
+            <li>💰 {{ r['price'] or 'Price not listed' }}</li>
+            <li>🕗 {{ r['opening_hours'] }}</li>
           </ul>
-          <button class="btn btn-line" type="button">View details</button>
+          <a class="btn btn-line" href="{{ r['map_link'] }}" target="_blank" rel="noopener">View on map</a>
         </div>
       </article>
-      <article class="spot">
-        <div class="photo"></div>
-        <div class="spot-body">
-          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
-          <h3></h3>
-          <ul class="facts">
-            <li>💰 </li>
-            <li>🕗 </li>
-            <li>🚶 </li>
-          </ul>
-          <button class="btn btn-line" type="button">View details</button>
-        </div>
-      </article>
-      <article class="spot">
-        <div class="photo"></div>
-        <div class="spot-body">
-          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
-          <h3></h3>
-          <ul class="facts">
-            <li>💰 </li>
-            <li>🕗 </li>
-            <li>🚶 </li>
-          </ul>
-          <button class="btn btn-line" type="button">View details</button>
-        </div>
-      </article>
-      <article class="spot">
-        <div class="photo"></div>
-        <div class="spot-body">
-          <div class="tags"><span class="tag"></span><span class="tag"></span></div>
-          <h3></h3>
-          <ul class="facts">
-            <li>💰 </li>
-            <li>🕗 </li>
-            <li>🚶 </li>
-          </ul>
-          <button class="btn btn-line" type="button">View details</button>
-        </div>
-      </article>
+      {% endfor %}
     </div>
 
-    <div class="center"><button class="btn btn-dark" type="button">Suggest a new spot</button></div>
+    <div class="center">
+      {% if restaurants|length > 4 %}
+        <button class="btn btn-outline" type="button" id="more-btn">More</button>
+      {% endif %}
+      <button class="btn btn-dark" type="button">Suggest a new spot</button>
+    </div>
+
+    <script>
+      // first 4 cards show on load, every click on More shows 12 more (3 rows)
+      const moreBtn = document.getElementById("more-btn");
+      if (moreBtn) {
+        moreBtn.addEventListener("click", function () {
+          const hiddenCards = document.querySelectorAll("#spot-list .spot[hidden]");
+          for (let i = 0; i < 12 && i < hiddenCards.length; i++) {
+            hiddenCards[i].hidden = false;
+          }
+          if (hiddenCards.length <= 12) {
+            moreBtn.remove();
+          }
+        });
+      }
+    </script>
   </div>
 </section>
 

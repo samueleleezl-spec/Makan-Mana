@@ -31,6 +31,16 @@ def init_db_command():
     click.echo("db made fresh")
 
 
+@click.command("init-restaurants")
+def init_restaurants_command():
+    """(re)loads the restaurant table only. run: flask --app run init-restaurants"""
+    db = get_db()
+    with current_app.open_resource("restaurants.sql") as f:
+        db.executescript(f.read().decode("utf8"))
+    click.echo("restaurants loaded")
+
+
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(init_restaurants_command)
